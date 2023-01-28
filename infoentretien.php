@@ -29,8 +29,10 @@ $result = mysqli_query($conn, $sql);
 echo "<table style='border:1px solid #000;'>";
 if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()) {
-        echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $row["DateHeurePrevueEntretien"] . "</td></tr>";
-        echo "<tr><td style='border:1px solid #000;'>Date/heure effective entretien :</td><td style='border:1px solid #000;'>" . $row["DateHeureEffectiveEntretien"] . "</td></tr>";
+        $newdatepre = date("d/m/Y H:i", strtotime($row["DateHeurePrevueEntretien"]));
+        $newdateeff = date("d/m/Y H:i", strtotime($row["DateHeureEffectiveEntretien"]));
+        echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $newdatepre . "</td></tr>";
+        echo "<tr><td style='border:1px solid #000;'>Date/heure effective entretien :</td><td style='border:1px solid #000;'>" . $newdateeff . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Entreprise ponctuelle :</td><td style='border:1px solid #000;'>" . $row["PonctualiteEntreprise"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Rémunération abordée :</td><td style='border:1px solid #000;'>" . $row["Remuneration"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Poste abordé :</td><td style='border:1px solid #000;'>" . $row["PosteAborde"] . "</td></tr>";
@@ -53,8 +55,10 @@ $result = mysqli_query($conn, $sql);
 echo "<table style='border:1px solid #000;'>";
 if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()) {
-        echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $row["DateHeurePrevueEntretien"] . "</td></tr>";
-        echo "<tr><td style='border:1px solid #000;'>Date/heure effective entretien :</td><td style='border:1px solid #000;'>" . $row["DateHeureEffectiveEntretien"] . "</td></tr>";
+        $newdatepre = date("d/m/Y H:i", strtotime($row["DateHeurePrevueEntretien"]));
+        $newdateeff = date("d/m/Y H:i", strtotime($row["DateHeureEffectiveEntretien"]));
+        echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $newdatepre . "</td></tr>";
+        echo "<tr><td style='border:1px solid #000;'>Date/heure effective entretien :</td><td style='border:1px solid #000;'>" . $newdateeff . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Entreprise ponctuelle :</td><td style='border:1px solid #000;'>" . $row["PonctualiteEntreprise"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Rémunération abordée :</td><td style='border:1px solid #000;'>" . $row["Remuneration"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Poste abordé :</td><td style='border:1px solid #000;'>" . $row["PosteAborde"] . "</td></tr>";
