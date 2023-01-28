@@ -2,33 +2,49 @@
 <html>
 <head>
     <title>Modification statut entretien</title>
+    <link href="custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
 </head>
 <?php
 include("class/sqlconnect.php");
 ?>
 <body>
+  <a href="index.php">Revenir à l'accueil</a><br><br>
     <form action="modificationstatut.php" method="post">
-        <label for="entreprise">Entreprise</label>
-        <select name="entreprise" id="entreprise">
-            <?php
-                $sql = "SELECT ID, NomSociete FROM Entreprise";
-                $result = mysqli_query($conn, $sql);
-                while($row = mysqli_fetch_assoc($result)){
-                    echo "<option value='" . $row['ID'] . "'>" . $row['NomSociete'] . "</option>";
-                }
-            ?>
-        </select>
-        <br>
-        <label for="statut">Statut d'entretien</label>
-        <select name="statut" id="statut">
-            <?php
-                $sql = "SELECT ID, Statut FROM StatutEntretien";
-                $result = mysqli_query($conn, $sql);
-                while($row = mysqli_fetch_assoc($result)){
-                    echo "<option value='" . $row['ID'] . "'>" . $row['Statut'] . "</option>";
-                }
-            ?>
-        </select>
+      <table>
+        <tr>
+          <td>
+            <label for="entreprise">Entreprise</label>
+          </td>
+          <td>
+            <select name="entreprise" id="entreprise">
+                <?php
+                    $sql = "SELECT ID, NomSociete FROM Entreprise";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "<option value='" . $row['ID'] . "'>" . $row['NomSociete'] . "</option>";
+                    }
+                ?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="statut">Statut d'entretien</label>
+          </td>
+          <td>
+            <select name="statut" id="statut">
+                <?php
+                    $sql = "SELECT ID, Statut FROM StatutEntretien";
+                    $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "<option value='" . $row['ID'] . "'>" . $row['Statut'] . "</option>";
+                    }
+                ?>
+            </select>
+          </td>
+        </tr>
+      </table>
         <br>
         <input type="submit" name="submit" value="Modifier statut">
     </form>

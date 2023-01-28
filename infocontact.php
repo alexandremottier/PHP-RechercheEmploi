@@ -1,8 +1,11 @@
 <html>
 <head>
     <title>Afficher un contact</title>
+    <link href="custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
+    <a href="index.php">Revenir à l'accueil</a><br><br>
     <h1>Afficher un contact</h1>
 <?php
 include('class/sqlconnect.php');

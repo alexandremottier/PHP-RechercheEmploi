@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>Modifier un contact</title>
+    <link href="custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
     <h1>Modifier un contact</h1>
@@ -13,33 +15,60 @@
 ?>
 
 <form action="modifcontact.php" method="post">
-    <input type="hidden" name="ID" value="<?php echo $id; ?>">
-    <label>Prénom :</label>
-    <input type="text" name="Prenom" value="<?php echo $row['Prenom']; ?>">
-    <br>
-    <label>Nom :</label>
-    <input type="text" name="Nom" value="<?php echo $row['Nom']; ?>">
-    <br>
-    <label>Poste :</label>
-    <input type="text" name="Poste" value="<?php echo $row['Poste']; ?>">
-    <br>
-    <label>Entreprise :</label>
-    <select name="IDEntreprise">
-        <?php
-            $sql = "SELECT * FROM Entreprise";
-            $result = $conn->query($sql);
-            while ($entreprise = $result->fetch_assoc()) {
-                if ($entreprise['ID'] == $row['IDEntreprise']) {
-                    echo "<option value='" . $entreprise['ID'] . "' selected>" . $entreprise['NomSociete'] . "</option>";
-                } else {
-                    echo "<option value='" . $entreprise['ID'] . "'>" . $entreprise['NomSociete'] . "</option>";
+  <table>
+    <tr>
+      <td>
+        <input type="hidden" name="ID" value="<?php echo $id; ?>">
+        <label>Prénom :</label>
+      </td>
+      <td>
+        <input type="text" name="Prenom" value="<?php echo $row['Prenom']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Nom :</label>
+      </td>
+      <td>
+        <input type="text" name="Nom" value="<?php echo $row['Nom']; ?>">
+      </td>
+    <tr>
+      <td>
+        <label>Poste :</label>
+      </td>
+      <td>
+        <input type="text" name="Poste" value="<?php echo $row['Poste']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Entreprise :</label>
+      </td>
+      <td>
+        <select name="IDEntreprise">
+            <?php
+                $sql = "SELECT * FROM Entreprise";
+                $result = $conn->query($sql);
+                while ($entreprise = $result->fetch_assoc()) {
+                    if ($entreprise['ID'] == $row['IDEntreprise']) {
+                        echo "<option value='" . $entreprise['ID'] . "' selected>" . $entreprise['NomSociete'] . "</option>";
+                    } else {
+                        echo "<option value='" . $entreprise['ID'] . "'>" . $entreprise['NomSociete'] . "</option>";
+                    }
                 }
-            }
-        ?>
-    </select>
-    <br>
-    <label>Numéro de mobile :</label>
-    <input type="text" name="Mobile" value="<?php echo $row['Mobile']; ?>">
+            ?>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Numéro de mobile :</label>
+      </td>
+      <td>
+        <input type="text" name="Mobile" value="<?php echo $row['Mobile']; ?>">
+      </td>
+    </tr>
+    </table>
     <br>
     <input type="submit" name="submit" value="Enregistrer les modifications">
 </form>

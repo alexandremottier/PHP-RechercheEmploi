@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>Ajouter un contact</title>
+    <link href="custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
     <h1>Ajouter un contact</h1>
@@ -18,30 +20,58 @@
         mysqli_query($conn, $sql);
     }
 ?>
-
+<a href="index.php">Revenir à l'accueil</a><br><br>
 <form method="post" action="">
-    <label for="Prenom">Prénom :</label>
-    <input type="text" name="Prenom" required>
-    <br>
-    <label for="Nom">Nom :</label>
-    <input type="text" name="Nom" required>
-    <br>
-    <label for="Poste">Poste occupé :</label>
-    <input type="text" name="Poste" >
-    <br>
-    <label for="Mobile">Numéro de mobile :</label>
-    <input type="text" name="Mobile" >
-    <br>
-    <label for="Entreprise">Entreprise :</label>
-    <select name="IDEntreprise">
-        <?php
-            $sql = "SELECT ID, NomSociete FROM Entreprise";
-            $result = mysqli_query($conn, $sql);
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<option value='" . $row['ID'] . "'>" . $row['NomSociete'] . "</option>";
-            }
-        ?>
-    </select>
-    <br><br>
-    <input type="submit" name="submit" value="Ajouter">
+  <table>
+    <tr>
+      <td>
+        <label for="Prenom">Prénom :</label>
+      </td>
+      <td>
+        <input type="text" name="Prenom" required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="Nom">Nom :</label>
+      </td>
+      <td>
+        <input type="text" name="Nom" required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="Poste">Poste occupé :</label>
+      </td>
+      <td>
+        <input type="text" name="Poste" >
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="Mobile">Numéro de mobile :</label>
+      </td>
+      <td>
+        <input type="text" name="Mobile" >
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="Entreprise">Entreprise :</label>
+      </td>
+      <td>
+        <select name="IDEntreprise">
+            <?php
+                $sql = "SELECT ID, NomSociete FROM Entreprise";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)){
+                    echo "<option value='" . $row['ID'] . "'>" . $row['NomSociete'] . "</option>";
+                }
+            ?>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <input type="submit" name="submit" value="Ajouter">
 </form>

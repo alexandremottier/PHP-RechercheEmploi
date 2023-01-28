@@ -1,0 +1,59 @@
+/* Importation de la police Poppins depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/* Définition de la couleur bleue pour les tableaux et le fond */
+.table {
+    background-color: #87CEEB;
+    color: #FFFFFF;
+    border: 1px solid #000;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: #003153; /* Couleur fond */
+  font-family: 'Poppins', sans-serif; /* Police Poppins */
+  color: #ABCFED; /* Couleur texte */
+}
+a {
+    /* Propriétés de base des liens */
+    color: #4A9FE8; /* Couleur du texte */
+    text-decoration: none; /* Supprime la surbrillance */
+    font-family: 'Poppins', sans-serif; /* Change la police */
+}
+
+footer {
+   position: absolute;
+   bottom: 10;
+   width: 100%;
+}
+
+
+a:hover {
+    /* Propriétés lorsque la souris est sur le lien */
+    color: #FFFF00; /* Change la couleur du texte */
+    text-decoration: underline; /* Ajoute une soulignement */
+    background-color: #003153; /* Change la couleur de fond */
+}
+
+
+/* Définition de la couleur jaune pour le texte */
+.table th, .table td {
+    color: #FFFF00;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Ajout d'un peu d'espacement entre les cellules */
+.table td, .table th, .table tr {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+/* Ajout d'un peu de relief aux cellules survolées */
+.table tr:hover {background-color: #f5f5f5;}
+
+/* Alignement du texte dans les cellules */
+.table th, .table td {
+    text-align: left;
+    padding: 8px;
+}
