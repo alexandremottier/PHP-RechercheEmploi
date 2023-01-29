@@ -18,9 +18,12 @@ CREATE TABLE `Contact` (
   `Nom` varchar(255) NOT NULL,
   `Poste` varchar(255) DEFAULT NULL,
   `Mobile` varchar(255) DEFAULT NULL,
+  `IDUser` int(4) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDEntreprise` (`IDEntreprise`),
-  CONSTRAINT `Contact_ibfk_1` FOREIGN KEY (`IDEntreprise`) REFERENCES `Entreprise` (`ID`)
+  KEY `IDUser` (`IDUser`),
+  CONSTRAINT `Contact_ibfk_1` FOREIGN KEY (`IDEntreprise`) REFERENCES `Entreprise` (`ID`),
+  CONSTRAINT `Contact_ibfk_2` FOREIGN KEY (`IDUser`) REFERENCES `users` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -32,9 +35,12 @@ CREATE TABLE `Entreprise` (
   `Adresse` varchar(255) DEFAULT NULL,
   `NumeroTel` varchar(255) DEFAULT NULL,
   `StatutEntretien` int(2) DEFAULT NULL,
+  `UserID` int(4) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `Contact` (`Contact`),
-  CONSTRAINT `Entreprise_ibfk_1` FOREIGN KEY (`Contact`) REFERENCES `Contact` (`ID`)
+  KEY `UserID` (`UserID`),
+  CONSTRAINT `Entreprise_ibfk_1` FOREIGN KEY (`Contact`) REFERENCES `Contact` (`ID`),
+  CONSTRAINT `Entreprise_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
