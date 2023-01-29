@@ -31,6 +31,7 @@ if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()) {
         $suivi = $row['SuiviEntretien'];
         $suivi = html_entity_decode($suivi);
+        $suivi = nl2br($suivi);
         $newdatepre = date("d/m/Y H:i", strtotime($row["DateHeurePrevueEntretien"]));
         $newdateeff = date("d/m/Y H:i", strtotime($row["DateHeureEffectiveEntretien"]));
         echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $newdatepre . "</td></tr>";
@@ -59,6 +60,7 @@ if ($result->num_rows > 0) {
 while($row = $result->fetch_assoc()) {
         $suivi = $row['SuiviEntretien'];
         $suivi = html_entity_decode($suivi);
+        $suivi = nl2br($suivi);
         $newdatepre = date("d/m/Y H:i", strtotime($row["DateHeurePrevueEntretien"]));
         $newdateeff = date("d/m/Y H:i", strtotime($row["DateHeureEffectiveEntretien"]));
         echo "<tr><td style='border:1px solid #000;'>Date/heure prévue entretien :</td><td style='border:1px solid #000;'>" . $newdatepre . "</td></tr>";
