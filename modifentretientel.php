@@ -73,7 +73,7 @@ $conn->close();
         </td>
         <td style='border:1px solid #000;'>
           <?php $row['SuiviEntretien'] = str_replace("\'", "'", $row['SuiviEntretien']); ?>
-          <textarea id="Suivi" name="Suivi" rows="4" cols="50"><?php echo $row['SuiviEntretien']; ?></textarea>
+          <textarea id="Suivi" name="Suivi" rows="12" cols="100"><?php echo $row['SuiviEntretien']; ?></textarea>
         </td>
       </tr>
     </table>
