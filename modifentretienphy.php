@@ -90,6 +90,7 @@ if (isset($_POST['submit'])) {
     $remuneration = $_POST['Remuneration'];
     $poste = $_POST['Poste'];
     $suivi = $_POST['Suivi'];
+    $suivi = htmlentities($suivi);
     $suivi = str_replace("'", "\'", $suivi);
 
 $sql = "UPDATE EntretienPresentiel SET DateHeurePrevueEntretien='$dateHeurePrevueEntretien', DateHeureEffectiveEntretien='$dateHeureEffectiveEntretien', PonctualiteEntreprise='$ponctualiteEntreprise', Remuneration='$remuneration', PosteAborde='$poste', SuiviEntretien='$suivi' WHERE IDContact='$id'";

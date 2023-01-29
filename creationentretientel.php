@@ -111,6 +111,7 @@
       $remuneration = $_POST['remuneration'];
       $poste = $_POST['poste'];
       $suivi = $_POST['suivi'];
+      $suivi = htmlentities($suivi);
       $suivi = str_replace("'", "\'", $suivi);
 
       $sql = "INSERT INTO EntretienTelephonique (IDEntreprise, IDContact, DateHeurePrevueEntretien, DateHeureEffectiveEntretien, PonctualiteEntreprise, Remuneration, PosteAborde, SuiviEntretien)
