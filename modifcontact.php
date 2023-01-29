@@ -13,7 +13,7 @@
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 ?>
-
+<a href="index.php">Revenir à l'accueil</a><br><br>
 <form action="modifcontact.php" method="post">
   <table>
     <tr>

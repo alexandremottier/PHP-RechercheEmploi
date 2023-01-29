@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 include("class/sqlconnect.php");
 
 // Récupère les données de la table Entreprise
-$sql = "SELECT Entreprise.ID, Entreprise.NomSociete, Contact.ID, Contact.Prenom, Contact.Nom, Entreprise.Adresse, StatutEntretien.Statut
+$sql = "SELECT Entreprise.ID AS EntrepriseID, Entreprise.NomSociete, Contact.ID, Contact.Prenom, Contact.Nom, Entreprise.Adresse, StatutEntretien.Statut
 FROM Entreprise
 LEFT JOIN Contact ON Entreprise.ID = Contact.IDEntreprise
 LEFT JOIN StatutEntretien ON Entreprise.StatutEntretien = StatutEntretien.ID";
@@ -28,7 +28,7 @@ echo "<table style='border:1px solid #000;'>";
 echo "<tr><th style='border:1px solid #000;'>Nom de la société</th><th style='border:1px solid #000;'>Contact</th><th style='border:1px solid #000;'>Adresse</th><th style='border:1px solid #000;'>Statut</th><th style='border:1px solid #000;'>Entretiens</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     echo "<tr>";
-    echo "<td style='border:1px solid #000;'>" . $row['NomSociete'] . "</td>";
+    echo "<td style='border:1px solid #000;'>" . "<a href='modifentreprise.php?ID=" . $row['EntrepriseID'] . "'>" . $row['NomSociete'] . "</td>";
     echo "<td style='border:1px solid #000;'>" . "<a href='infocontact.php?ID=" . $row['ID'] . "'>" . $row['Prenom'] . ' ' . $row['Nom'] . "</a>" . "</td>";
     echo "<td style='border:1px solid #000;'>" . $row['Adresse'] . "</td>";
     echo "<td style='border:1px solid #000;'>" . $row['Statut'] . "</td>";
