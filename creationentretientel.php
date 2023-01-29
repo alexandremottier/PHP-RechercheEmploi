@@ -111,10 +111,11 @@
       $remuneration = $_POST['remuneration'];
       $poste = $_POST['poste'];
       $suivi = $_POST['suivi'];
+      $suivi = str_replace("'", "\'", $suivi);
 
       $sql = "INSERT INTO EntretienTelephonique (IDEntreprise, IDContact, DateHeurePrevueEntretien, DateHeureEffectiveEntretien, PonctualiteEntreprise, Remuneration, PosteAborde, SuiviEntretien)
       VALUES ('$idEntreprise', '$idContact', '$dateHeurePrevueEntretien', '$dateHeureEffectiveEntretien', '$ponctualiteEntreprise', '$remuneration', '$poste', '$suivi')";
-      
+
       if ($conn->query($sql) === TRUE) {
           echo "L'entretien téléphonique a été enregistré avec succès.";
       } else {
