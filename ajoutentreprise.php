@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+header("Location: login.php");
+exit;
+}
+if (isset($_SESSION['username'])) {
+$prenom = $_SESSION['first_name'];
+$nom = $_SESSION['last_name'];
+$profession = $_SESSION['profession'];
+$idsession = $_SESSION['ID'];
+}
 include("class/sqlconnect.php");
 ?>
 <body>
@@ -47,8 +59,8 @@ include("class/sqlconnect.php");
           $NumeroTel = $_POST["NumeroTel"];
           $StatutEntretien = "2";
 
-          $sql = "INSERT INTO Entreprise (NomSociete, Adresse, NumeroTel, StatutEntretien)
-          VALUES ('$NomSociete', '$Adresse', '$NumeroTel', '$StatutEntretien')";
+          $sql = "INSERT INTO Entreprise (NomSociete, Adresse, NumeroTel, StatutEntretien, UserID)
+          VALUES ('$NomSociete', '$Adresse', '$NumeroTel', '$StatutEntretien', '$idsession')";
           $result = mysqli_query($conn, $sql);
 
           if($result) {

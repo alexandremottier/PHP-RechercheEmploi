@@ -3,6 +3,15 @@
     <title>Modifier un entretien présentiel/visio</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
+    <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 </head>
 <?php
 include('class/sqlconnect.php');

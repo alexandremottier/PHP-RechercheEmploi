@@ -6,9 +6,9 @@ SET foreign_key_checks = 0;
 
 SET NAMES utf8mb4;
 
-DROP DATABASE IF EXISTS `rechercheemploi`;
-CREATE DATABASE `rechercheemploi` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `rechercheemploi`;
+DROP DATABASE IF EXISTS `prod_rechercheemploi`;
+CREATE DATABASE `prod_rechercheemploi` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `prod_rechercheemploi`;
 
 DROP TABLE IF EXISTS `Contact`;
 CREATE TABLE `Contact` (
@@ -94,6 +94,17 @@ INSERT INTO `StatutEntretien` (`ID`, `Statut`) VALUES
 (8,	'ENTRETIEN TÉLÉPHONIQUE NON CONVAINCANT'),
 (9,	'ENTRETIEN PHYSIQUE NON CONVAINCANT'),
 (10,	'REFUS ENTREPRISE');
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `ID` int(4) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `profession` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 -- 2023-01-28 18:36:11

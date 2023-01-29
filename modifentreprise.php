@@ -3,6 +3,15 @@
     <title>Modifier une entreprise</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
+    <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 </head>
 <body>
     <h1>Modifier une entreprise</h1>

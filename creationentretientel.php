@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+<?php
     include 'class/sqlconnect.php';
     $query = "SELECT ID, NomSociete FROM Entreprise";
     $result = mysqli_query($conn, $query);
