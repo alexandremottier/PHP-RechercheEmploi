@@ -3,6 +3,15 @@
     <title>Modifier un contact</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
+    <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 </head>
 <body>
     <h1>Modifier un contact</h1>
@@ -79,6 +88,8 @@ $id = $_POST['ID'];
 $prenom = $_POST['Prenom'];
 $nom = $_POST['Nom'];
 $poste = $_POST['Poste'];
+$poste = htmlentities($poste);
+$poste = str_replace("'", "\'", $poste);
 $entreprise = $_POST['IDEntreprise'];
 $mobile = $_POST['Mobile'];
 

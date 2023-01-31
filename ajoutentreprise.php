@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width">
 </head>
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+header("Location: login.php");
+exit;
+}
+if (isset($_SESSION['username'])) {
+$prenom = $_SESSION['first_name'];
+$nom = $_SESSION['last_name'];
+$profession = $_SESSION['profession'];
+$idsession = $_SESSION['ID'];
+include_once 'class/sqlconnect.php';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT ID FROM users WHERE username = :username");
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $idsession = $result['ID'];
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
+}
 include("class/sqlconnect.php");
 ?>
 <body>
@@ -44,11 +71,13 @@ include("class/sqlconnect.php");
       if(isset($_POST["submit"])) {
           $NomSociete = $_POST["NomSociete"];
           $Adresse = $_POST["Adresse"];
+          $Adresse = htmlentities($Adresse);
+          $Adresse = str_replace("'", "\'", $Adresse);
           $NumeroTel = $_POST["NumeroTel"];
           $StatutEntretien = "2";
 
-          $sql = "INSERT INTO Entreprise (NomSociete, Adresse, NumeroTel, StatutEntretien)
-          VALUES ('$NomSociete', '$Adresse', '$NumeroTel', '$StatutEntretien')";
+          $sql = "INSERT INTO Entreprise (NomSociete, Adresse, NumeroTel, StatutEntretien, UserID)
+          VALUES ('$NomSociete', '$Adresse', '$NumeroTel', '$StatutEntretien', '$idsession')";
           $result = mysqli_query($conn, $sql);
 
           if($result) {

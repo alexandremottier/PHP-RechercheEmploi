@@ -7,16 +7,44 @@
 <body>
     <h1>Ajouter un contact</h1>
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+} else {
+$prenom = $_SESSION['first_name'];
+$nom = $_SESSION['last_name'];
+$profession = $_SESSION['profession'];
+$idsession = $_SESSION['ID'];
+}
+include_once 'class/sqlconnect.php';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT ID FROM users WHERE username = :username");
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $idsession = $result['ID'];
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
     include 'class/sqlconnect.php';
 
     if(isset($_POST['submit'])){
         $prenom = $_POST['Prenom'];
         $nom = $_POST['Nom'];
         $poste = $_POST['Poste'];
+        $poste = htmlentities($poste);
+        $poste = str_replace("'", "\'", $poste);
         $mobile = $_POST['Mobile'];
         $entreprise = $_POST['IDEntreprise'];
 
-        $sql = "INSERT INTO Contact (Prenom, Nom, Poste, Mobile, IDEntreprise) VALUES ('$prenom', '$nom', '$poste', '$mobile', '$entreprise')";
+        $sql = "INSERT INTO Contact (Prenom, Nom, Poste, Mobile, IDEntreprise, IDUser) VALUES ('$prenom', '$nom', '$poste', '$mobile', '$entreprise', '$idsession')";
         mysqli_query($conn, $sql);
     }
 ?>
@@ -62,7 +90,7 @@
       <td>
         <select name="IDEntreprise">
             <?php
-                $sql = "SELECT ID, NomSociete FROM Entreprise";
+                $sql = "SELECT ID, NomSociete FROM Entreprise WHERE UserID =" . $idsession . ";";
                 $result = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_assoc($result)){
                     echo "<option value='" . $row['ID'] . "'>" . $row['NomSociete'] . "</option>";
@@ -75,3 +103,5 @@
   <br>
   <input type="submit" name="submit" value="Ajouter">
 </form>
+</body>
+</html>

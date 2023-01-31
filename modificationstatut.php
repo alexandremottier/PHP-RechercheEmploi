@@ -4,6 +4,15 @@
     <title>Modification statut entretien</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
+    <?php
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 </head>
 <?php
 include("class/sqlconnect.php");
