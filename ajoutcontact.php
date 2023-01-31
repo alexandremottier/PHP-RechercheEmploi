@@ -43,8 +43,9 @@ $conn = null;
         $poste = str_replace("'", "\'", $poste);
         $mobile = $_POST['Mobile'];
         $entreprise = $_POST['IDEntreprise'];
+        $mail = $_POST['Mail'];
 
-        $sql = "INSERT INTO Contact (Prenom, Nom, Poste, Mobile, IDEntreprise, IDUser) VALUES ('$prenom', '$nom', '$poste', '$mobile', '$entreprise', '$idsession')";
+        $sql = "INSERT INTO Contact (Prenom, Nom, Poste, Mobile, IDEntreprise, IDUser, Mail) VALUES ('$prenom', '$nom', '$poste', '$mobile', '$entreprise', '$idsession', '$mail')";
         mysqli_query($conn, $sql);
     }
 ?>
@@ -80,7 +81,15 @@ $conn = null;
         <label for="Mobile">Numéro de mobile :</label>
       </td>
       <td>
-        <input type="text" name="Mobile" >
+        <input type="text" name="Mobile" pattern="0[0-9]{9}" >
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="Mail">Adresse e-mail :</label>
+      </td>
+      <td>
+        <input type="email" name="Mail" >
       </td>
     </tr>
     <tr>

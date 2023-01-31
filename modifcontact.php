@@ -74,7 +74,15 @@ if (!isset($_SESSION['loggedin'])) {
         <label>Numéro de mobile :</label>
       </td>
       <td>
-        <input type="text" name="Mobile" value="<?php echo $row['Mobile']; ?>">
+        <input type="text" name="Mobile" pattern="0[0-9]{9}" value="<?php echo $row['Mobile']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Adresse e-mail :</label>
+      </td>
+      <td>
+        <input type="email" name="Mail" value="<?php echo $row['Mail']; ?>">
       </td>
     </tr>
     </table>
@@ -92,8 +100,9 @@ $poste = htmlentities($poste);
 $poste = str_replace("'", "\'", $poste);
 $entreprise = $_POST['IDEntreprise'];
 $mobile = $_POST['Mobile'];
+$mail = $_POST['Mail'];
 
-$sql = "UPDATE Contact SET Prenom='$prenom', Nom='$nom', Poste='$poste', IDEntreprise='$entreprise', Mobile='$mobile' WHERE ID='$id'";
+$sql = "UPDATE Contact SET Prenom='$prenom', Nom='$nom', Poste='$poste', IDEntreprise='$entreprise', Mobile='$mobile', Mail='$mail' WHERE ID='$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Le contact a été modifié avec succès";
