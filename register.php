@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Inscription</title>
+    <title>Gestionnaire de recherche d'emploi - Inscription</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
   </head>
   <body>
-    <h1>Inscription</h1>
+    <h1>Gestionnaire de recherche d'emploi - Inscription</h1>
+    <h2>C'est le moment où vous parlez de vous ! 🙂</h2>
     <form action="register.php" method="post">
     <table>
-      <tr>
-        <td>
-          <label for="first_name">Prénom :</label>
+      <tr style='border:0px;'>
+        <td style='border:0px;'>
+          <label for="first_name">&nbsp;Prénom :</label>
         </td>
-        <td>
-          <input type="text" name="first_name" required>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="last_name">Nom :</label>
-        </td>
-        <td>
-          <input type="text" name="last_name" required>
+        <td style='border:0px;'>
+          <input type="text" name="first_name" size="50" required>
         </td>
       </tr>
-      <tr>
-        <td>
-          <label for="username">Nom d'utilisateur :</label>
+      <tr style='border:0px;'>
+        <td style='border:0px;'>
+          <label for="last_name">&nbsp;Nom :</label>
         </td>
-        <td>
-          <input type="text" name="username" required>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="password">Mot de passe :</label>
-        </td>
-        <td>
-          <input type="password" name="password" required>
+        <td style='border:0px;'>
+          <input type="text" name="last_name" size="50" required>
         </td>
       </tr>
-      <tr>
-        <td>
-          <label for="profession">Profession :</label>
+      <tr style='border:0px;'>
+        <td style='border:0px;'>
+          <label for="username">&nbsp;Nom d'utilisateur :</label>
         </td>
-        <td>
-          <input type="text" name="profession" required>
+        <td style='border:0px;'>
+          <input type="text" name="username" size="50" required>
+        </td>
+      </tr>
+      <tr style='border:0px;'>
+        <td style='border:0px;'>
+          <label for="password">&nbsp;Mot de passe :</label>
+        </td>
+        <td style='border:0px;'>
+          <input type="password" name="password" size="50" required>
+        </td>
+      </tr>
+      <tr style='border:0px;'>
+        <td style='border:0px;'>
+          <label for="profession">&nbsp;Profession (un seul poste) :</label>
+        </td>
+        <td style='border:0px;'>
+          <input type="text" name="profession" size="50" required>
         </td>
       </tr>
     </table><br>
@@ -57,9 +58,9 @@
 <?php
 // Connexion à la base de données
 $host = "localhost";
-$dbusername = "nom_utilisateur_bdd";
-$dbpassword = "mot_de_passe_bdd";
-$dbname = "nom_bdd";
+$dbusername = "prodrechercheemploi";
+$dbpassword = "j6uSgr49bpXC1PwRZKV8";
+$dbname = "prod_rechercheemploi";
 
 $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
 if (!$conn) {
@@ -73,6 +74,8 @@ $last_name = $_POST['last_name'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $profession = $_POST['profession'];
+$profession = htmlentities($profession);
+$profession = str_replace("/", "\/", $profession);
 
 // Requête d'insertion des informations dans la base de données
 $sql = "INSERT INTO users (first_name, last_name, username, password, profession)
@@ -80,6 +83,7 @@ VALUES ('$first_name', '$last_name', '$username', '$password', '$profession')";
 
 if (mysqli_query($conn, $sql)) {
   echo "Inscription réussie !";
+  header("refresh:1; url=index.php");
 } else {
   echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
 }

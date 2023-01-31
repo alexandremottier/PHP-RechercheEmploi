@@ -88,6 +88,8 @@ $id = $_POST['ID'];
 $prenom = $_POST['Prenom'];
 $nom = $_POST['Nom'];
 $poste = $_POST['Poste'];
+$poste = htmlentities($poste);
+$poste = str_replace("'", "\'", $poste);
 $entreprise = $_POST['IDEntreprise'];
 $mobile = $_POST['Mobile'];
 

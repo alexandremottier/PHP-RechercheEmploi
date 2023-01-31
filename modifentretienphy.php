@@ -14,6 +14,21 @@ if (!isset($_SESSION['loggedin'])) {
 
 </head>
 <?php
+include_once 'class/sqlconnect.php';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT ID FROM users WHERE username = :username");
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $idsession = $result['ID'];
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
 include('class/sqlconnect.php');
 $id = $_GET['ID'];
 $sql = "SELECT NomSociete FROM Entreprise JOIN Contact ON Entreprise.ID = Contact.IDEntreprise WHERE Contact.ID =$id";
@@ -22,9 +37,21 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
 }
 $conn->close();
+include('class/sqlconnect.php');
+$sql2 = "SELECT Prenom, Nom FROM Contact WHERE Contact.ID =$id";
+$result2 = mysqli_query($conn, $sql2);
+if ($result2) {
+    $row2 = mysqli_fetch_assoc($result2);
+$conn->close();
+}
 ?>
 <body>
-    <h1>Modifier un entretien présentiel/visio<br>Société <?php echo $row['NomSociete'] ?></h1>
+  <a href="index.php">Revenir à l'accueil</a><br><br>
+  <fieldset>
+    <legend><font size="6">Modifier un entretien présentiel/visio</font></legend>
+      <font size="5">Société <?php echo $row['NomSociete'] ?></font><br>
+      <font size="5">Votre interlocuteur(trice) : <?php echo $row2['Prenom'] . " " . $row2['Nom'] ?></font>
+  </fieldset><br>
 <?php
     include('class/sqlconnect.php');
     $id = $_GET['ID'];
@@ -32,7 +59,6 @@ $conn->close();
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 ?>
-<a href="index.php">Revenir à l'accueil</a><br><br>
 <form action="modifentretienphy.php" method="post">
   <table style='border:1px solid #000;'>
       <tr style='border:1px solid #000;'>
@@ -73,7 +99,7 @@ $conn->close();
           <label for="Poste">Poste proposé:</label>
         </td>
         <td style='border:1px solid #000;'>
-          <input type="text" id="Poste" name="Poste" value="<?php echo $row['Poste']; ?>">
+          <input type="text" id="Poste" name="Poste" value="<?php echo $row['PosteAborde']; ?>">
         </td>
       </tr>
       <tr style='border:1px solid #000;'>
@@ -82,7 +108,7 @@ $conn->close();
         </td>
         <td style='border:1px solid #000;'>
           <?php $row['SuiviEntretien'] = str_replace("\'", "'", $row['SuiviEntretien']); ?>
-          <textarea id="Suivi" name="Suivi" rows="12" cols="100"><?php echo $row['SuiviEntretien']; ?></textarea>
+          <textarea id="Suivi" name="Suivi" rows="20" cols="150"><?php echo $row['SuiviEntretien']; ?></textarea>
         </td>
       </tr>
     </table>
@@ -98,6 +124,7 @@ if (isset($_POST['submit'])) {
     $ponctualiteEntreprise = $_POST['PonctualiteEntreprise'];
     $remuneration = $_POST['Remuneration'];
     $poste = $_POST['Poste'];
+    $poste = str_replace("'", "\'", $poste);
     $suivi = $_POST['Suivi'];
     $suivi = htmlentities($suivi);
     $suivi = str_replace("'", "\'", $suivi);
@@ -106,7 +133,7 @@ $sql = "UPDATE EntretienPresentiel SET DateHeurePrevueEntretien='$dateHeurePrevu
 
 if ($conn->query($sql) === TRUE) {
     echo "L'entretien a été modifié avec succès";
-    header("refresh:1; url=index.php");
+    header("Location: infoentretien.php?ID=" . $id);
 } else {
     echo "Erreur lors de la modification : " . $conn->error;
 }

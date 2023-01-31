@@ -6,9 +6,9 @@ session_start();
 
 // Connexion à la base de données
 $host = "localhost";
-$dbusername = "nom_utilisateur_bdd";
-$dbpassword = "mot_de_passe_bdd";
-$dbname = "nom_bdd";
+$dbusername = "prodrechercheemploi";
+$dbpassword = "j6uSgr49bpXC1PwRZKV8";
+$dbname = "prod_rechercheemploi";
 
 $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
 if (!$conn) {

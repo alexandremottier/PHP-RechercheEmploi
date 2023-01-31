@@ -3,11 +3,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 /* Définition de la couleur bleue pour les tableaux et le fond */
-.table {
-    background-color: #87CEEB;
+table {
+    border-collapse: collapse;
+    background-color: #003153;
     color: #FFFFFF;
-    border: 1px solid #000;
+    border: 1px solid #FFF;
     font-family: 'Poppins', sans-serif;
+}
+td {
+  border: 1px solid;
+  border-color: rgb(255, 255, 255);
+}
+tr {
+  border: 1px solid;
+  border-color: rgb(255, 255, 255);
+}
+th {
+  border: 1px solid;
+  border-color: rgb(255, 255, 255);
 }
 body {
   background-color: #003153; /* Couleur fond */
@@ -37,23 +50,23 @@ a:hover {
 
 
 /* Définition de la couleur jaune pour le texte */
-.table th, .table td {
+/* .table th, .table td {
     color: #FFFF00;
     text-align: left;
     padding: 8px;
-}
+} */
 
-/* Ajout d'un peu d'espacement entre les cellules */
-.table td, .table th, .table tr {
+/* Ajout d'un peu d'espacement entre les cellules
+ .table td, .table th, .table tr {
     border: 1px solid #000;
     padding: 8px;
-}
+} */
 
-/* Ajout d'un peu de relief aux cellules survolées */
-.table tr:hover {background-color: #f5f5f5;}
+/* Ajout d'un peu de relief aux cellules survolées
+.table tr:hover {background-color: #f5f5f5;} */
 
-/* Alignement du texte dans les cellules */
+/* Alignement du texte dans les cellules
 .table th, .table td {
     text-align: left;
     padding: 8px;
-}
+} */

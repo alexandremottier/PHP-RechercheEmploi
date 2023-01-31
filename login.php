@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Connexion</title>
+    <title>Gestionnaire de recherche d'emploi - Connexion</title>
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
   </head>
   <body>
-    <h1>Connexion</h1>
+    <h1>Gestionnaire de recherche d'emploi - Connexion</h1>
+    <h2>Contrôle d'identité ! Vous devez vous connecter pour accéder à cette page !</h2>
     <form action="verify.php" method="post">
       <table>
-        <tr>
-          <td>
-            <label for="username">Nom d'utilisateur :</label>
+        <tr style='border:0px;'>
+          <td style='border:0px;'>
+            <label for="username">&nbsp;Nom d'utilisateur :</label>
           </td>
-          <td>
+          <td style='border:0px;'>
             <input type="text" name="username" required>
           </td>
         </tr>
-        <tr>
-          <td>
-            <label for="password">Mot de passe :</label>
+        <tr style='border:0px;'>
+          <td style='border:0px;'>
+            <label for="password">&nbsp;Mot de passe :</label>
           </td>
-          <td>
+          <td style='border:0px;'>
             <input type="password" name="password" required>
           </td>
         </tr>
@@ -29,6 +30,7 @@
           <br>
           <input type="submit" value="Se connecter">
     </form><br><br>
-    Vous pouvez aussi <a href="register.php">Créer un compte</a>
+    Si vous n'avez pas encore de compte, vous pouvez <a href="register.php">en créer un gratuitement</a> !<br>
+    Si vous avez perdu vos identifiants, vous pouvez <a href="mailto:support@am-networks.fr">envoyer un mail à l'équipe support</a> en indiquant votre identifiant ainsi que vos noms et prénoms !
   </body>
 </html>

@@ -7,15 +7,30 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <?php
+include_once 'class/sqlconnect.php';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT ID FROM users WHERE username = :username");
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $idsession = $result['ID'];
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+$conn = null;
     include 'class/sqlconnect.php';
-    $query = "SELECT ID, NomSociete, Adresse FROM Entreprise";
+    $query = "SELECT ID, NomSociete, Adresse FROM Entreprise WHERE UserID =" . $idsession . ";";
     $result = mysqli_query($conn, $query);
     $options = "";
     while ($row = mysqli_fetch_assoc($result)) {
         $options .= "<option value={$row['ID']}>{$row['NomSociete']} - {$row['Adresse']}</option>";
     }
 
-    $query = "SELECT ID, Prenom, Nom, Mobile, IDEntreprise FROM Contact";
+    $query = "SELECT ID, Prenom, Nom, Mobile, IDEntreprise FROM Contact WHERE IDUser =" . $idsession . ";";
     $result = mysqli_query($conn, $query);
     $options2 = "";
     while ($row = mysqli_fetch_assoc($result)) {
@@ -78,7 +93,7 @@ if (!isset($_SESSION['loggedin'])) {
             <label for="ponctualiteEntreprise">Ponctualité de l'entreprise :</label>
           </td>
           <td style='border:1px solid #000;'>
-            <input type="checkbox" id="ponctualiteEntreprise" name="ponctualiteEntreprise">
+            <input type="checkbox" id="ponctualiteEntreprise" value="1" name="ponctualiteEntreprise">
           </td>
         </tr>
         <tr style='border:1px solid #000;'>
@@ -102,7 +117,7 @@ if (!isset($_SESSION['loggedin'])) {
             <label for="suivi">Déroulement et suivi Entretien:</label>
           </td>
           <td style='border:1px solid #000;'>
-            <textarea id="suivi" name="suivi" value="<?php echo $suivi; ?>" rows="4" cols="50"></textarea>
+            <textarea id="suivi" name="suivi" value="<?php echo $suivi; ?>" rows="20" cols="150"></textarea>
           </td>
         </tr>
         </table>
@@ -118,6 +133,7 @@ if (!isset($_SESSION['loggedin'])) {
       $ponctualiteEntreprise = $_POST['ponctualiteEntreprise'];
       $remuneration = $_POST['remuneration'];
       $poste = $_POST['poste'];
+      $poste = str_replace("'", "\'", $poste);
       $suivi = $_POST['suivi'];
       $suivi = htmlentities($suivi);
       $suivi = str_replace("'", "\'", $suivi);
@@ -127,6 +143,7 @@ if (!isset($_SESSION['loggedin'])) {
 
       if ($conn->query($sql) === TRUE) {
           echo "L'entretien présentiel a été enregistré avec succès.";
+          header("refresh:1; url=index.php");
       } else {
           echo "Erreur lors de l'enregistrement de l'entretien présentiel: " . $conn->error;
       }
