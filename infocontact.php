@@ -20,7 +20,7 @@ if (!isset($_SESSION['loggedin'])) {
 include('class/sqlconnect.php');
 $id = $_GET['ID'];
 
-$sql = "SELECT Contact.Prenom, Contact.Nom, Contact.Poste, Entreprise.NomSociete, Contact.Mobile FROM Contact JOIN Entreprise ON Contact.IDEntreprise = Entreprise.ID WHERE Contact.ID =$id";
+$sql = "SELECT Contact.Prenom, Contact.Nom, Contact.Poste, Entreprise.NomSociete, Contact.Mobile, Contact.Mail FROM Contact JOIN Entreprise ON Contact.IDEntreprise = Entreprise.ID WHERE Contact.ID =$id";
 $result = mysqli_query($conn, $sql);
 
 echo "<table style='border:1px solid #000;'>";
@@ -29,7 +29,8 @@ while($row = $result->fetch_assoc()) {
         echo "<tr><td style='border:1px solid #000;'>Nom :</td><td style='border:1px solid #000;'>" . $row["Nom"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Poste :</td><td style='border:1px solid #000;'>" . $row["Poste"] . "</td></tr>";
         echo "<tr><td style='border:1px solid #000;'>Entreprise :</td><td style='border:1px solid #000;'>" . $row["NomSociete"] . "</td></tr>";
-        echo "<tr><td style='border:1px solid #000;'>Numéro de mobile :</td><td style='border:1px solid #000;'>" . $row["Mobile"] . "</td></tr>";
+        echo "<tr><td style='border:1px solid #000;'>Numéro de mobile :</td><td style='border:1px solid #000;'><a href='tel:" . $row["Mobile"] . "'>" . $row["Mobile"] . "</td></tr>";
+        echo "<tr><td style='border:1px solid #000;'>Adresse e-mail :</td><td style='border:1px solid #000;'><a href='mailto:" . $row["Mail"] . "'>" . $row["Mail"] . "</a></td></tr>";
     };
 $conn->close();
 ?>

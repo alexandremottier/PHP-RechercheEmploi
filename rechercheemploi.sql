@@ -18,6 +18,7 @@ CREATE TABLE `Contact` (
   `Nom` varchar(255) NOT NULL,
   `Poste` varchar(255) DEFAULT NULL,
   `Mobile` varchar(255) DEFAULT NULL,
+  `Mail` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDEntreprise` (`IDEntreprise`),
   CONSTRAINT `Contact_ibfk_1` FOREIGN KEY (`IDEntreprise`) REFERENCES `Entreprise` (`ID`)
