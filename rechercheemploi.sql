@@ -17,7 +17,7 @@ CREATE TABLE `Contact` (
   `Prenom` varchar(255) NOT NULL,
   `Nom` varchar(255) NOT NULL,
   `Poste` varchar(255) DEFAULT NULL,
-  `Mobile` varchar(255) DEFAULT NULL,
+  `Mobile` varchar(10) DEFAULT NULL,
   `Mail` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDEntreprise` (`IDEntreprise`),
