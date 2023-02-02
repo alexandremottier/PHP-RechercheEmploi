@@ -71,7 +71,7 @@ if (!isset($_SESSION['loggedin'])) {
     </tr>
     <tr>
       <td>
-        <label>Numéro de mobile :</label>
+        <label>Numéro de mobile (format 0102030405) :</label>
       </td>
       <td>
         <input type="text" name="Mobile" pattern="0[0-9]{9}" value="<?php echo $row['Mobile']; ?>">

@@ -57,10 +57,10 @@ include("class/sqlconnect.php");
         </tr>
         <tr>
           <td>
-            <label for="NumeroTel">Numéro de téléphone de la société : (facultatif)</label>
+            <label for="NumeroTel">Numéro de téléphone de la société : (format 0102030405)</label>
           </td>
           <td>
-            <input type="text" id="NumeroTel" name="NumeroTel">
+            <input type="text" id="NumeroTel" name="NumeroTel" pattern="0[0-9]{9}">
           </td>
         </tr>
       </table>

@@ -78,7 +78,7 @@ $conn = null;
     </tr>
     <tr>
       <td>
-        <label for="Mobile">Numéro de mobile :</label>
+        <label for="Mobile">Numéro de mobile (format 0102030405) :</label>
       </td>
       <td>
         <input type="text" name="Mobile" pattern="0[0-9]{9}" >

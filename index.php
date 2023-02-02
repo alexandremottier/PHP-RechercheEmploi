@@ -82,16 +82,18 @@ echo "<table>";
 echo "<tr><th>Société</th><th>Contact</th><th>Adresse</th><th>Statut</th><th>Entretiens</th></tr>";
 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     if (!empty($row['Mobile'])) {
-        $mobile = '(' . $row['Mobile'] . ')';
+        $mobile = strval($row["Mobile"]);
+        $mobile = substr($mobile, 0, 2) . "." . substr($mobile, 2, 2) . "." . substr($mobile, 4, 2) . "." . substr($mobile, 6, 2) . "." . substr($mobile, 8, 2);
+        $mobile = '&nbsp;<br>(' . $mobile . ')';
     } else {
         $mobile = '';
     }
     echo "<tr>";
-    echo "<td>&nbsp; " . "<a href='modifentreprise.php?ID=" . $row['EntrepriseID'] . "'> " . $row['NomSociete'] . " </a>&nbsp;</td>";
-    echo "<td>&nbsp; " . "<a href='infocontact.php?ID=" . $row['ID'] . "'> " . $row['Prenom'] . ' ' . $row['Nom'] . ' ' . $mobile . "</a> " . " &nbsp;</td>";
-    echo "<td>&nbsp; " . $row['Adresse'] . " &nbsp;</td>";
-    echo "<td>&nbsp; " . $row['Statut'] . " &nbsp;</td>";
-    echo "<td> " . "<a href='infoentretien.php?ID=" . $row['ID'] . "'>&nbsp; Afficher les entretiens &nbsp;</a>" . " &nbsp;</td>";
+    echo "<td>" . "<a href='modifentreprise.php?ID=" . $row['EntrepriseID'] . "'>&nbsp;" . $row['NomSociete'] . "&nbsp;</a></td>";
+    echo "<td>" . "<a href='infocontact.php?ID=" . $row['ID'] . "'>&nbsp;" . $row['Prenom'] . ' ' . $row['Nom'] . ' ' . $mobile . "</a></td>";
+    echo "<td>&nbsp;" . $row['Adresse'] . "&nbsp;</td>";
+    echo "<td>&nbsp;" . $row['Statut'] . "&nbsp;</td>";
+    echo "<td>" . "<a href='infoentretien.php?ID=" . $row['ID'] . "'>&nbsp;Afficher les entretiens&nbsp;</a></td>";
     echo '</tr>';
 }
 

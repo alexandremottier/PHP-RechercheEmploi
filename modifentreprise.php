@@ -48,10 +48,10 @@ if (!isset($_SESSION['loggedin'])) {
     </tr>
     <tr>
       <td>
-        <label>Numéro de téléphone :</label>
+        <label>Numéro de téléphone (format 0102030405):</label>
       </td>
       <td>
-        <input type="text" name="NumeroTel" value="<?php echo $row['NumeroTel']; ?>">
+        <input type="text" name="NumeroTel" pattern="0[0-9]{9}" value="<?php echo $row['NumeroTel']; ?>">
       </td>
     </tr>
     <tr>
