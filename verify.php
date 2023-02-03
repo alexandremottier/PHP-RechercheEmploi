@@ -6,8 +6,8 @@ session_start();
 
 // Connexion à la base de données
 $host = "localhost";
-$dbusername = "prodrechercheemploi";
-$dbpassword = "j6uSgr49bpXC1PwRZKV8";
+$dbusername = "admin";
+$dbpassword = "admin";
 $dbname = "prod_rechercheemploi";
 
 $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);

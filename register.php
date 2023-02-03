@@ -58,9 +58,9 @@
 <?php
 // Connexion à la base de données
 $host = "localhost";
-$dbusername = "prodrechercheemploi";
-$dbpassword = "j6uSgr49bpXC1PwRZKV8";
-$dbname = "prod_rechercheemploi";
+$dbusername = "prod_rechercheemploi";
+$dbpassword = "admin";
+$dbname = "admin";
 
 $conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
 if (!$conn) {
