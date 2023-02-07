@@ -1,6 +1,8 @@
 <html>
 <head>
-    <title>Modifier une entreprise</title>
+    <title>Gestionnaire de recherche d'emploi - Modifier une entreprise</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
     <?php

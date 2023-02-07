@@ -44,7 +44,9 @@ $conn = null;
 <html>
 <head>
     <link href="custom.css" rel="stylesheet">
-    <title>Création d'un entretien physique/visio</title>
+    <title>Gestionnaire de recherche d'emploi - Création d'un entretien physique/visio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width">
 </head>
 <body>

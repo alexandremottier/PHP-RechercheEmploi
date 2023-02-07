@@ -1,6 +1,8 @@
 <html>
 <head>
-  <title>Utilitaire de recherche d'emploi - Liste des entreprises</title>
+  <title>Gestionnaire de recherche d'emploi - Liste des entreprises</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
   <link href="custom.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width">
   <?php
@@ -51,14 +53,9 @@ $conn = null;
   <fieldset>
     <legend><font size="6"><?php echo $greet . ", " . $result['first_name'] . " !" ?></font></legend>
     <font size="5">Poste recherché : <?php echo $profession ?></font><br>
-    <br><font size="2"><a href="logout.php">Se déconnecter</a> - <a href="modifprofil.php">Modifier votre profil</a> - <a href="https://github.com/alexandremottier/PHP-RechercheEmploi" target="_blank">Développé avec amour par Aiden ♥️</a></font>
+    <br><font size="2"><a href="logout.php">Se déconnecter</a> - <a href="modifprofil.php">Modifier votre profil</a> - <a href="https://github.com/alexandremottier/PHP-RechercheEmploi" target="_blank">Made with ♥️ by Aiden</a></font>
   </fieldset><br>
-    <font size="5">Votre recherche d'emploi - Liste de vos entreprises</font>
-  <p>Ci-dessous se trouve la liste de vos entreprises ainsi que le suivi de vos échanges (contacts, entretiens, statuts de vos candidatures).
-  <br>Vous pouvez ajouter un nombre illimité d'entreprises, mais vous ne pourrez pas en supprimer (en raison des dépendances avec les entretiens et les contacts).
-  <br>En cas de problème, vous pouvez contacter l'<a href="mailto:contact@am-networks.fr">équipe support</a>.
-  <br>En cas de bug applicatif, vous pouvez créer une <a href="https://github.com/alexandremottier/PHP-RechercheEmploi/issues/new" target="_blank">issue sur GitHub</a>.
-</p>
+    <font size="5">Votre recherche d'emploi - Liste de vos entreprises</font><br>
 <br>
 <?php
 ini_set('display_errors', 1);
@@ -108,5 +105,8 @@ mysqli_close($conn);
 <a href="creationentretienphy.php">Créer un entretien présentiel ou visio</a>
 </font>
 <br><br>
+<p>En cas de problème, vous pouvez contacter l'<a href="mailto:contact@am-networks.fr">équipe support</a>.
+<br>En cas de bug applicatif, vous pouvez créer une <a href="https://github.com/alexandremottier/PHP-RechercheEmploi/issues/new" target="_blank">issue sur GitHub</a>.
+</p>
 </body>
 </html>

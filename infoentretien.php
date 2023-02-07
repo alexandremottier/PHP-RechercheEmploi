@@ -1,6 +1,8 @@
 <html>
 <head>
-    <title>Afficher les entretiens</title>
+    <title>Gestionnaire de recherche d'emploi - Afficher les entretiens</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
     <link href="custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
     <?php
