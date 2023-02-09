@@ -57,16 +57,7 @@
 </html>
 <?php
 // Connexion à la base de données
-$host = "localhost";
-$dbusername = "prod_rechercheemploi";
-$dbpassword = "admin";
-$dbname = "admin";
-
-$conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-if (!$conn) {
-  die("Erreur de connexion à la base de données : " . mysqli_connect_error());
-}
-
+include_once 'class/sqlconnect.php';
 // Récupération des informations soumises par l'utilisateur
 if(isset($_POST['submit'])) {
 $first_name = $_POST['first_name'];

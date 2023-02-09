@@ -5,16 +5,7 @@
 session_start();
 
 // Connexion à la base de données
-$host = "localhost";
-$dbusername = "admin";
-$dbpassword = "admin";
-$dbname = "prod_rechercheemploi";
-
-$conn = mysqli_connect($host, $dbusername, $dbpassword, $dbname);
-if (!$conn) {
-  die("Erreur de connexion à la base de données : " . mysqli_connect_error());
-}
-
+include_once 'class/sqlconnect.php';
 // Récupération des identifiants soumis par l'utilisateur
 $username = $_POST['username'];
 $password = $_POST['password'];
