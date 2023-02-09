@@ -105,7 +105,7 @@ mysqli_close($conn);
 <a href="creationentretienphy.php">Créer un entretien présentiel ou visio</a>
 </font>
 <br><br>
-<p>En cas de problème, vous pouvez contacter l'<a href="mailto:contact@am-networks.fr">équipe support</a>.
+<p>En cas de problème, vous pouvez contacter l'<a href="mailto:support@am-networks.fr?subject=Problème sur outil RechercheEmploi">équipe support</a>.
 <br>En cas de bug applicatif, vous pouvez créer une <a href="https://github.com/alexandremottier/PHP-RechercheEmploi/issues/new" target="_blank">issue sur GitHub</a>.
 </p>
 </body>
